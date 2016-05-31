@@ -49,7 +49,7 @@
 			$this->config["ip"] = $bind_ip;
 			$this->config["port"] = $port;
 
-			$this->master_socket = socket_create(AF_INET, SOCK_STREAM, 0);
+			$this->master_socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 			socket_bind($this->master_socket,$this->config["ip"],$this->config["port"]) or die("Issue Binding");
 			socket_getsockname($this->master_socket,$bind_ip,$port);
 			socket_listen($this->master_socket);
