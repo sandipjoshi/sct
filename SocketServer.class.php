@@ -23,7 +23,7 @@
 		/*!	@var		max_clients
 			@abstract	unsigned int - The maximum number of clients allowed to connect.
 		 */
-		public $max_clients = 10;
+		public $max_clients = 1000;
 
 		/*!	@var		max_read
 			@abstract	unsigned int - The maximum number of bytes to read from a socket at a single time.
@@ -164,6 +164,15 @@
 						{
 							SocketServer::debug("{$i}@{$this->clients[$i]->ip} --> {$input}");
 							$this->trigger_hooks("INPUT",$this->clients[$i],$input);
+							
+							$pinput=explode(',',$input);
+							$imei= "loclog/".$pinput[1].".txt";
+							echo $imei;
+							$imlogfile = fopen($imei,"a");
+							fwrite($imlogfile,$input);
+							fclose($imlogfile);
+						
+							
 						}
 					}
 				}
