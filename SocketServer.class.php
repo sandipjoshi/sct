@@ -167,7 +167,7 @@
 							
 							$pinput=explode(',',$input);
 							$imei= "loclog/".$pinput[1].".txt";
-							echo $imei;
+							//echo $imei;
 							$imlogfile = fopen($imei,"a");
 							fwrite($imlogfile,$input);
 							fclose($imlogfile);

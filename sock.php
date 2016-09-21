@@ -15,11 +15,11 @@ function handle_connect(&$server,&$client,$input)
 function handle_input(&$server,&$client,$input)
 {
     // You probably want to sanitize your inputs here
-	echo $input;
+	//echo $input;
     $hex=hex2bin($input);
     $trim = trim($hex); // Trim the input, Remove Line Endings and Extra Whitespace.
-	echo $hex;
-	echo $trim;	
+	//echo $hex;
+	//echo $trim;	
     if(strtolower($trim) == "quit") // User Wants to quit the server
     {
         SocketServer::socket_write_smart($client->socket,"Oh... Goodbye..."); // Give the user a sad goodbye message, meany!

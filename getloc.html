@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+<form onsubmit= "getloc(devid.value)" >
+<input type="text" name="devid">
+<input type='submit'>
+</form>
+    <div id="map"></div>
+    <script>
+
+function getloc(str)
+{
+	alert(str);
+ var jax=window.XMLHttpRequest ? new XMLHttpRequest() : new ActvieXObject('Microsoft.XMLHTTP');
+	jax.open('GET','http://52.221.228.225/sct/imeiloc.php');
+	jax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	jax.send('devid='+str);
+	alert("its ready to rock and roll"+str);
+	jax.onreadystatechange= function(){ if(jax.readyState == 4){
+	//var reptxt= JSON.stringify(jax.responceText);
+	var json = JSON.parse(jax.responceText);
+	var yourData = json["speed"];// or json["Data"]
+	
+
+	alert("this is mother of god");}
+}}
+
+      function initMap() {
+        var myLatLng = {lat: -25.363, lng: 131.044};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: myLatLng
+        });
+
+	
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR5ytQvLFxufOa8h7p_cmgh62Zb6CDG10&callback=initMap">
+    </script>
+  </body>
+</html>
